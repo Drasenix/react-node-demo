@@ -1,11 +1,10 @@
 import OrderingButtonComponent from "../../../../components/OrderingButtonComponent";
 import alphabetical from "../../../../assets/img/features/category/list/ordered/alphabetically/alphabetical-order.png";
-import alphabetical_active from "../../../../assets/img/features/category/list/ordered/alphabetically/alphabetical-order-active.png"; //
-import { OrderingTypes } from "../../CategoryMenuComponent";
+import alphabetical_active from "../../../../assets/img/features/category/list/ordered/alphabetically/alphabetical-order-active.png";
 
 interface IAlphabeticalOrderingButtonComponentProps {
   isActive: boolean;
-  changeOrdering: (ordering: OrderingTypes) => void;
+  changeOrdering: Function;
 }
 
 function AlphabeticalOrderingButtonComponent(
@@ -25,7 +24,7 @@ function AlphabeticalOrderingButtonComponent(
           : "(Inactif) Boutton qui permet de trier les catégories par ordre alphabétique"
       }
       text={"Ordre alphabétique"}
-      selectOrdering={() => props.changeOrdering(OrderingTypes.Alphabetical)}
+      selectOrdering={() => props.changeOrdering()}
     ></OrderingButtonComponent>
   );
 }

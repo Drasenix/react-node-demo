@@ -11,7 +11,7 @@ export enum OrderingTypes {
 function CategoryMenuComponent() {
   const [ordering, setOrdering] = useState(OrderingTypes.Group);
 
-  function changeOrderingOnClick(ordering: OrderingTypes) {
+  function changeOrdering(ordering: OrderingTypes) {
     setOrdering(ordering);
   }
   return (
@@ -20,11 +20,11 @@ function CategoryMenuComponent() {
         <p className="title-categories">Catégories</p>
         <GroupOrderingButtonComponent
           isActive={ordering === OrderingTypes.Group}
-          changeOrdering={changeOrderingOnClick}
+          changeOrdering={() => changeOrdering(OrderingTypes.Group)}
         />
         <AlphabeticalOrderingButtonComponent
           isActive={ordering === OrderingTypes.Alphabetical}
-          changeOrdering={changeOrderingOnClick}
+          changeOrdering={() => changeOrdering(OrderingTypes.Alphabetical)}
         />
       </header>
 
