@@ -1,11 +1,10 @@
 import OrderingButtonComponent from "../../../../components/OrderingButtonComponent";
 import group from "../../../../assets/img/features/category/list/ordered/group/group.png";
 import group_active from "../../../../assets/img/features/category/list/ordered/group/group-active.png";
-import { OrderingTypes } from "../../CategoryMenuComponent";
 
 interface IGroupOrderingButtonComponentProps {
   isActive: boolean;
-  changeOrdering: (ordering: OrderingTypes) => void;
+  changeOrdering: Function;
 }
 
 function GroupOrderingButtonComponent(
@@ -25,7 +24,7 @@ function GroupOrderingButtonComponent(
           : " (Inactif) Boutton qui permet de regrouper les catégories par groupes"
       }
       text={"Groupe de catégorie"}
-      selectOrdering={() => props.changeOrdering(OrderingTypes.Group)}
+      selectOrdering={() => props.changeOrdering()}
     ></OrderingButtonComponent>
   );
 }
