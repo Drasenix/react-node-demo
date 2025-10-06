@@ -1,5 +1,5 @@
 {
-  "name": "technical-test",
+  "name": "backend-categories",
   "version": "1.0.0",
   "description": "Express server for categories",
   "main": "index.js",
