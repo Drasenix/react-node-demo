@@ -1,7 +1,6 @@
 import { ICategory } from "../../../../services/api/interfaces/Categorie";
 import "../../../../styles/features/category/list/ordered/alphabetically/AlphabeticalCategoriesComponent.css";
 import { useState } from "react";
-import { OrderingTypes } from "../../CategoryMenuComponent";
 import { CategoryComponent } from "../../list/CategoryComponent";
 import { CategoryItemComponent } from "../../list/CategoryItemComponent";
 
@@ -31,11 +30,7 @@ export function AlphabeticalCategoriesComponent(props: IAlpheticalProps) {
             isSelected={category.id === selectedCategory}
             selectCategory={changeSelectedCategory}
           >
-            <CategoryComponent
-              ordering={OrderingTypes.Alphabetical}
-              key={category.id}
-              category={category}
-            >
+            <CategoryComponent key={category.id} category={category}>
               <div className={"category-name-title " + category.group?.color}>
                 {category.group?.name}
               </div>

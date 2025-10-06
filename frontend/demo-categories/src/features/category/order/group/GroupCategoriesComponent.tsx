@@ -1,7 +1,6 @@
 import { IGroupCategories } from "./GroupsCategoriesComponent";
 import "../../../../styles/features/category/list/ordered/group/GroupCategoriesComponent.css";
 import { useState } from "react";
-import { OrderingTypes } from "../../CategoryMenuComponent";
 import { CategoryComponent } from "../../list/CategoryComponent";
 import { CategoryItemComponent } from "../../list/CategoryItemComponent";
 interface IGroupCategoryProps {
@@ -37,11 +36,7 @@ export function GroupCategoriesComponent(props: IGroupCategoryProps) {
             }
             selectCategory={changeSelectedCategory}
           >
-            <CategoryComponent
-              ordering={OrderingTypes.Group}
-              key={category.id}
-              category={category}
-            />
+            <CategoryComponent key={category.id} category={category} />
           </CategoryItemComponent>
         ))}
       </ul>
