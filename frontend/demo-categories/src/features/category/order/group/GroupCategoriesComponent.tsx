@@ -1,9 +1,9 @@
 import { IGroupCategories } from "./GroupsCategoriesComponent";
-import "../../../../../styles/features/category/list/ordered/group/GroupCategoriesComponent.css";
+import "../../../../styles/features/category/list/ordered/group/GroupCategoriesComponent.css";
 import { useState } from "react";
-import { OrderingTypes } from "../../../CategoryMenuComponent";
-import { CategoryComponent } from "../../CategoryComponent";
-import { CategoryItemComponent } from "../../CategoryItemComponent";
+import { OrderingTypes } from "../../CategoryMenuComponent";
+import { CategoryComponent } from "../../list/CategoryComponent";
+import { CategoryItemComponent } from "../../list/CategoryItemComponent";
 interface IGroupCategoryProps {
   groupCategories: IGroupCategories;
   changeGroupContainingSelectedCategory: Function;

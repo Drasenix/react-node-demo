@@ -1,5 +1,5 @@
 import { ICategory, IGroup } from "../../../../../api/interfaces/Categorie";
-import { IGroupCategories } from "../../../../../../features/category/list/ordered/group/GroupsCategoriesComponent";
+import { IGroupCategories } from "../../../../../../features/category/order/group/GroupsCategoriesComponent";
 
 export function orderCategoriesByGroups(
   categories: ICategory[]

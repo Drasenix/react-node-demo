@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../../styles/features/category/CategoryMenuComponent.css";
-import OrderingButtonComponent from "./OrderingButtonComponent";
 import CategoryListComponent from "./list/CategoryListComponent";
+import AlphabeticalOrderingButtonComponent from "./order/alphabetically/AlphabeticalOrderingButtonComponent";
+import GroupOrderingButtonComponent from "./order/group/GroupOrderingButtonComponent";
 
 export enum OrderingTypes {
   Alphabetical = "alphabetical",
@@ -10,22 +11,20 @@ export enum OrderingTypes {
 function CategoryMenuComponent() {
   const [ordering, setOrdering] = useState(OrderingTypes.Group);
 
-  function changeOrdering(ordering: OrderingTypes) {
+  function changeOrderingOnClick(ordering: OrderingTypes) {
     setOrdering(ordering);
   }
   return (
     <>
       <header className="Main-header">
         <p className="title-categories">Catégories</p>
-        <OrderingButtonComponent
-          ordering={OrderingTypes.Group}
+        <GroupOrderingButtonComponent
           isActive={ordering === OrderingTypes.Group}
-          changeOrdering={changeOrdering}
+          changeOrdering={changeOrderingOnClick}
         />
-        <OrderingButtonComponent
-          ordering={OrderingTypes.Alphabetical}
+        <AlphabeticalOrderingButtonComponent
           isActive={ordering === OrderingTypes.Alphabetical}
-          changeOrdering={changeOrdering}
+          changeOrdering={changeOrderingOnClick}
         />
       </header>
 

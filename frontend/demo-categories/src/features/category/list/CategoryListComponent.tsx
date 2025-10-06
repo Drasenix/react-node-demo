@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import "../../../styles/features/category/list/CategoryListComponent.css";
 import search from "../../../assets/img/features/category/list/search.png";
 import { ICategory } from "../../../services/api/interfaces/Categorie";
-import { AlphabeticalCategoriesComponent } from "./ordered/alphabetically/AlphabeticalCategoriesComponent";
+import { AlphabeticalCategoriesComponent } from "../order/alphabetically/AlphabeticalCategoriesComponent";
 import {
   GroupsCategoriesComponent,
   IGroupCategories,
-} from "./ordered/group/GroupsCategoriesComponent";
+} from "../order/group/GroupsCategoriesComponent";
 import { OrderingTypes } from "../CategoryMenuComponent";
 import { orderCategoriesAlphabetically } from "../../../services/features/category/list/ordered/alphabetically/AlphabeticalCategoriesService";
 import { orderCategoriesByGroups } from "../../../services/features/category/list/ordered/group/GroupCategoriesService";

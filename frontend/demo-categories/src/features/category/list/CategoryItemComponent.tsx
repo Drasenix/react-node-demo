@@ -9,13 +9,9 @@ interface ICategoryItemProps {
 }
 
 export function CategoryItemComponent(props: ICategoryItemProps) {
-  function handleSelectCategory() {
-    props.selectCategory(props.category.id);
-  }
-
   const handleKeyDown = (event: any) => {
     if (event.key === "Enter") {
-      handleSelectCategory();
+      props.selectCategory(props.category.id);
     }
   };
 
@@ -23,7 +19,7 @@ export function CategoryItemComponent(props: ICategoryItemProps) {
     <li
       tabIndex={0}
       className={props.isSelected ? "category-item-selected" : "category-item"}
-      onClick={() => handleSelectCategory()}
+      onClick={() => props.selectCategory(props.category.id)}
       onKeyDown={handleKeyDown}
     >
       {props.children}

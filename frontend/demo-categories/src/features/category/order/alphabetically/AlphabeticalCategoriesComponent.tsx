@@ -1,9 +1,9 @@
-import { ICategory } from "../../../../../services/api/interfaces/Categorie";
-import "../../../../../styles/features/category/list/ordered/alphabetically/AlphabeticalCategoriesComponent.css";
+import { ICategory } from "../../../../services/api/interfaces/Categorie";
+import "../../../../styles/features/category/list/ordered/alphabetically/AlphabeticalCategoriesComponent.css";
 import { useState } from "react";
-import { OrderingTypes } from "../../../CategoryMenuComponent";
-import { CategoryComponent } from "../../CategoryComponent";
-import { CategoryItemComponent } from "../../CategoryItemComponent";
+import { OrderingTypes } from "../../CategoryMenuComponent";
+import { CategoryComponent } from "../../list/CategoryComponent";
+import { CategoryItemComponent } from "../../list/CategoryItemComponent";
 
 interface IAlpheticalProps {
   categories: ICategory[];
