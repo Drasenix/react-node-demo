@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../../../styles/features/category/list/CategoryListComponent.css";
-import search from "../../../assets/img/features/category/list/search.png";
 import { ICategory } from "../../../services/api/interfaces/Categorie";
 import { AlphabeticalCategoriesComponent } from "../order/alphabetically/AlphabeticalCategoriesComponent";
 import {
@@ -14,6 +13,7 @@ import {
   getAllVisibleCategories,
   applyFilterOnCategories,
 } from "../../../services/features/category/list/CategoryListService";
+import SearchBarComponent from "../../../components/SearchBarComponent";
 
 interface IListProps {
   ordering: OrderingTypes;
@@ -61,21 +61,10 @@ function CategoryListComponent(props: IListProps) {
   return (
     <>
       <div className="list-categories-header">
-        <div className="list-categories-search">
-          <img
-            className="list-categories-search-btn-img"
-            src={search}
-            alt="Loupe"
-          />
-          <input
-            role="search"
-            value={filterCategories}
-            onInput={(e) => setFilterCategories(e.currentTarget.value)}
-            className="list-categories-search-input"
-            type="text"
-            placeholder="Rechercher une catégorie"
-          />
-        </div>
+        <SearchBarComponent
+          filterCategories={filterCategories}
+          setFilterCategories={setFilterCategories}
+        />
         <select
           className="list-categories-select"
           onChange={(event) => changeFilterGroupId(event.target.value)}
