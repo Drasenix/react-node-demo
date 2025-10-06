@@ -5,18 +5,13 @@ import { OrderingTypes } from "../CategoryMenuComponent";
 interface ICategoryProps {
   category: ICategory;
   ordering: OrderingTypes;
+  children?: React.ReactNode;
 }
 
 export function CategoryComponent(props: ICategoryProps) {
-  const class_name_color = props.category.group?.color;
-
   return (
     <div className={"category-content"}>
-      {props.ordering === OrderingTypes.Alphabetical && (
-        <div className={"category-name-title " + class_name_color}>
-          {props.category.group?.name}
-        </div>
-      )}
+      {props.children}
       <p className="categorie-wording">{props.category.wording}</p>
       <p
         className="categorie-description"

@@ -35,7 +35,11 @@ export function AlphabeticalCategoriesComponent(props: IAlpheticalProps) {
               ordering={OrderingTypes.Alphabetical}
               key={category.id}
               category={category}
-            />
+            >
+              <div className={"category-name-title " + category.group?.color}>
+                {category.group?.name}
+              </div>
+            </CategoryComponent>
           </CategoryItemComponent>
         ))}
       </ul>
