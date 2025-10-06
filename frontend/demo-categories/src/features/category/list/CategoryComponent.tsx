@@ -1,10 +1,8 @@
 import { ICategory } from "../../../services/api/interfaces/Categorie";
 import "../../../styles/features/category/list/CategoryComponent.css";
-import { OrderingTypes } from "../CategoryMenuComponent";
 
 interface ICategoryProps {
   category: ICategory;
-  ordering: OrderingTypes;
   children?: React.ReactNode;
 }
 
