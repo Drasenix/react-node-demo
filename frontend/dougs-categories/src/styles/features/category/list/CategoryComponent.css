@@ -1,0 +1,65 @@
+.categorie-wording {
+  font-family: "Eina03-SemiBold";
+  font-size: 14px;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+
+  color: #001a25;
+}
+.categorie-description {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+
+  align-items: center;
+
+  color: #636970;
+}
+
+.category-content {
+  padding: 16px;
+}
+
+.category-name-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 3px 12px;
+  gap: 10px;
+  background: #f1f7fc;
+  border-radius: 16px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.category-name-title.m-blue {
+  background: #f1f7fc;
+  color: #11abec;
+}
+
+.category-name-title.m-red {
+  background: #ffece6;
+  color: #fd755f;
+}
+.category-name-title.m-pink {
+  background: #fcf6ff;
+  color: #c45ffd;
+}
+.category-name-title.m-green {
+  background: #e9f9eb;
+  color: #4cca5d;
+}
+.category-name-title.m-purple {
+  background: #f7f6ff;
+  color: #755ffd;
+}

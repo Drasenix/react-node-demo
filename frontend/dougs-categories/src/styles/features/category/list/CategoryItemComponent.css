@@ -1,0 +1,36 @@
+.category-item {
+  border-bottom: 1px solid #dce4ed;
+  border-right: 1px solid #dce4ed;
+}
+
+.category-item:nth-child(1n) {
+  border-right: none;
+}
+
+.category-item:nth-child(2n + 1) {
+  border-right: solid 1px #dce4ed;
+}
+
+.odd-nb-categories .category-item:nth-last-child(-n + 1) {
+  border-bottom: none;
+}
+
+.even-nb-categories .category-item:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.category-item:focus {
+  background: #f3f5f8;
+  outline: none;
+}
+
+.category-item:hover {
+  background: #f3f5f8;
+  outline: none;
+}
+
+.category-item-selected {
+  background: #f1f7fc;
+  border: 1px solid #11abec;
+  outline: none;
+}

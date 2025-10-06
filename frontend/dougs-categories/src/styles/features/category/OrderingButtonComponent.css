@@ -1,0 +1,45 @@
+.group-categories-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  background: #ffffff;
+  border-radius: 4px;
+  border: 0;
+}
+
+.alphabetical-order-categories-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 4px;
+  border: 0;
+}
+
+.category-order-btn-img {
+  width: 14px;
+  height: 14px;
+}
+
+.category-order-btn-text {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 120%;
+  display: flex;
+  align-items: center;
+}
+
+.category-order-active {
+  background: #f1f7fc;
+  color: #11abec;
+}
+
+.category-order-inactive {
+  background: #ffffff;
+  color: #58676d;
+}
