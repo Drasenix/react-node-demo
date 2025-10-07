@@ -1,7 +1,6 @@
 import search from "../assets/img/features/category/list/search.png";
 
 interface ISearchBarComponentProps {
-  filterCategories: string;
   setFilterCategories: Function;
 }
 
@@ -15,7 +14,6 @@ function SearchBarComponent(props: ISearchBarComponentProps) {
       />
       <input
         role="search"
-        value={props.filterCategories}
         onInput={(e) => props.setFilterCategories(e.currentTarget.value)}
         className="list-categories-search-input"
         type="text"
