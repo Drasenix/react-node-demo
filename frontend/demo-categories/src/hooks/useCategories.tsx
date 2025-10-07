@@ -38,27 +38,30 @@ export default function useCategories() {
     [allVisibleCategories, filterCategories]
   );
 
-  const filteredCategoriesGrouped: IGroupCategories[] = useMemo(
-    () =>
-      !!filterGroupId
-        ? orderCategoriesByGroups(filteredVisibleCategories).filter(
-            (groupCategories: IGroupCategories) =>
-              groupCategories.group.id === filterGroupId
-          )
-        : orderCategoriesByGroups(filteredVisibleCategories),
+  const filteredCategoriesGrouped: IGroupCategories[] = useMemo(() => {
+    const groupCategories: IGroupCategories[] = orderCategoriesByGroups(
+      filteredVisibleCategories
+    );
+    if (!!filterGroupId) {
+      return groupCategories.filter(
+        (groupCategories: IGroupCategories) =>
+          groupCategories.group.id === filterGroupId
+      );
+    }
+    return groupCategories;
+  }, [filteredVisibleCategories, filterGroupId]);
 
-    [filteredVisibleCategories, filterGroupId]
-  );
-
-  const filteredCategoriesInAlphabeticalOrder: ICategory[] = useMemo(
-    () =>
-      !!filterGroupId
-        ? orderCategoriesAlphabetically(filteredVisibleCategories).filter(
-            (category) => category.group?.id === filterGroupId
-          )
-        : orderCategoriesAlphabetically(filteredVisibleCategories),
-    [filteredVisibleCategories, filterGroupId]
-  );
+  const filteredCategoriesInAlphabeticalOrder: ICategory[] = useMemo(() => {
+    const categories: ICategory[] = orderCategoriesAlphabetically(
+      filteredVisibleCategories
+    );
+    if (!!filterGroupId) {
+      return categories.filter(
+        (category) => category.group?.id === filterGroupId
+      );
+    }
+    return categories;
+  }, [filteredVisibleCategories, filterGroupId]);
 
   return {
     groupsAvailable,
