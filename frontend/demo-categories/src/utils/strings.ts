@@ -7,3 +7,7 @@ export function ignoreCaseAndAccent(string: string | undefined) {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "");
 }
+
+export function isAlphabeticalOrder(a: string, b: string) {
+  return a.localeCompare(b);
+}
