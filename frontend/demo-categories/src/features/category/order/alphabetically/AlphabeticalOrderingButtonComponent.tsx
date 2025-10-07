@@ -13,15 +13,13 @@ function AlphabeticalOrderingButtonComponent(
   return (
     <OrderingButtonComponent
       class={
-        props.isActive
-          ? "alphabetical-order-categories-btn category-order-active"
-          : "alphabetical-order-categories-btn category-order-inactive"
+        "alphabetical-order-categories-btn category-order-" +
+        (props.isActive ? "active" : "inactive")
       }
       src={props.isActive ? alphabetical_active : alphabetical}
       alt={
-        props.isActive
-          ? "(Actif) Boutton qui permet de trier les catégories par ordre alphabétique"
-          : "(Inactif) Boutton qui permet de trier les catégories par ordre alphabétique"
+        (props.isActive ? "(Actif)" : "(Inactif)") +
+        " Boutton qui permet de trier les catégories par ordre alphabétique"
       }
       text={"Ordre alphabétique"}
       selectOrdering={() => props.changeOrdering()}

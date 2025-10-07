@@ -14,7 +14,6 @@ interface IListProps {
 function CategoryListComponent(props: IListProps) {
   const {
     allCategoriesGrouped,
-    filterCategories,
     filteredCategoriesGrouped,
     filteredCategoriesInAlphabeticalOrder,
     setFilterCategories,
@@ -31,13 +30,10 @@ function CategoryListComponent(props: IListProps) {
   return (
     <>
       <div className="list-categories-header">
-        <SearchBarComponent
-          filterCategories={filterCategories}
-          setFilterCategories={setFilterCategories}
-        />
+        <SearchBarComponent setFilterCategories={setFilterCategories} />
         <SelectCategoryComponent
           groups={allCategoriesGrouped}
-          selectGroup={changeFilterGroupId}
+          selectFilterGroupId={changeFilterGroupId}
         ></SelectCategoryComponent>
       </div>
       {props.ordering === OrderingTypes.Alphabetical ? (

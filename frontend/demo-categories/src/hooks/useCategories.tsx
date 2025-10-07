@@ -59,7 +59,6 @@ export default function useCategories() {
 
   return {
     allCategoriesGrouped,
-    filterCategories,
     filteredCategoriesGrouped,
     filteredCategoriesInAlphabeticalOrder,
     setFilterCategories,
