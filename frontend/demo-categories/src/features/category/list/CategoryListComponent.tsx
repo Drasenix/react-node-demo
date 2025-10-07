@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../../../styles/features/category/list/CategoryListComponent.css";
 import { ICategory } from "../../../services/api/interfaces/Categorie";
 import { AlphabeticalCategoriesComponent } from "../order/alphabetically/AlphabeticalCategoriesComponent";
@@ -45,19 +45,24 @@ function CategoryListComponent(props: IListProps) {
     }
   }
 
-  const allCategoriesGrouped: IGroupCategories[] =
-    orderCategoriesByGroups(allVisibleCategories);
-
-  const filteredVisibleCategories: ICategory[] = applyFilterOnCategories(
-    filterCategories,
-    allVisibleCategories
+  const allCategoriesGrouped: IGroupCategories[] = useMemo(
+    () => orderCategoriesByGroups(allVisibleCategories),
+    [allVisibleCategories]
   );
 
-  const filteredCategoriesGrouped: IGroupCategories[] = orderCategoriesByGroups(
-    filteredVisibleCategories
+  const filteredVisibleCategories: ICategory[] = useMemo(
+    () => applyFilterOnCategories(filterCategories, allVisibleCategories),
+    [allVisibleCategories, filterCategories]
   );
-  const filteredCategoriesInAlphabeticalOrder: ICategory[] =
-    orderCategoriesAlphabetically(filteredVisibleCategories);
+
+  const filteredCategoriesGrouped: IGroupCategories[] = useMemo(
+    () => orderCategoriesByGroups(filteredVisibleCategories),
+    [filteredVisibleCategories]
+  );
+  const filteredCategoriesInAlphabeticalOrder: ICategory[] = useMemo(
+    () => orderCategoriesAlphabetically(filteredVisibleCategories),
+    [filteredVisibleCategories]
+  );
 
   return (
     <>
