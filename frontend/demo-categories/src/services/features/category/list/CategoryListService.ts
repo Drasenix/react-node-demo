@@ -22,6 +22,16 @@ export async function getAllVisibleCategories(): Promise<ICategory[]> {
   }
 }
 
+function ignoreCaseAndAccentOnWord(word: string | undefined) {
+  if (!word) {
+    return "";
+  }
+  return word
+    .toLocaleLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
 export function applyFilterOnCategories(
   filter: string,
   categories: ICategory[]
@@ -31,26 +41,12 @@ export function applyFilterOnCategories(
   }
   return categories.filter((category) => {
     return (
-      category.wording
-        ?.toLocaleLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(
-          filter
-            .toLocaleLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-        ) ||
-      category.description
-        ?.toLocaleLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(
-          filter
-            .toLocaleLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-        )
+      ignoreCaseAndAccentOnWord(category.wording).includes(
+        ignoreCaseAndAccentOnWord(filter)
+      ) ||
+      ignoreCaseAndAccentOnWord(category.description).includes(
+        ignoreCaseAndAccentOnWord(filter)
+      )
     );
   });
 }
