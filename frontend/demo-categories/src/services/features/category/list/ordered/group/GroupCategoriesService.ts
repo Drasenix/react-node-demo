@@ -2,10 +2,15 @@ import { ICategory, IGroup } from "../../../../../api/interfaces/Categorie";
 import { IGroupCategories } from "../../../../../../features/category/order/group/GroupsCategoriesComponent";
 
 export function getGroupsFromCategories(categories: ICategory[]): IGroup[] {
-  const groups = Array.from(categories, (categorie) => categorie.group).filter(
-    (group) => group !== undefined
-  );
-  return [...new Map(groups.map((group) => [group.id, group])).values()];
+  const groups_with_duplicates_entries: IGroup[] = Array.from(
+    categories,
+    (categorie) => categorie.group
+  ).filter((group) => group !== undefined);
+  return [
+    ...new Map(
+      groups_with_duplicates_entries.map((group) => [group.id, group])
+    ).values(),
+  ];
 }
 
 export function orderCategoriesByGroups(
