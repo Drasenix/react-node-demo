@@ -1,3 +1,4 @@
+import { ignoreCaseAndAccent } from "../../../../utils/strings";
 import {
   getVisibleCategories,
   getAllCategories,
@@ -22,16 +23,6 @@ export async function getAllVisibleCategories(): Promise<ICategory[]> {
   }
 }
 
-function ignoreCaseAndAccentOnWord(word: string | undefined) {
-  if (!word) {
-    return "";
-  }
-  return word
-    .toLocaleLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-}
-
 export function applyFilterOnCategories(
   filter: string,
   categories: ICategory[]
@@ -41,11 +32,11 @@ export function applyFilterOnCategories(
   }
   return categories.filter((category) => {
     return (
-      ignoreCaseAndAccentOnWord(category.wording).includes(
-        ignoreCaseAndAccentOnWord(filter)
+      ignoreCaseAndAccent(category.wording).includes(
+        ignoreCaseAndAccent(filter)
       ) ||
-      ignoreCaseAndAccentOnWord(category.description).includes(
-        ignoreCaseAndAccentOnWord(filter)
+      ignoreCaseAndAccent(category.description).includes(
+        ignoreCaseAndAccent(filter)
       )
     );
   });
