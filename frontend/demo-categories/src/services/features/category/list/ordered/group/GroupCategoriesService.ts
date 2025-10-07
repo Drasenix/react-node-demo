@@ -6,12 +6,15 @@ export function orderCategoriesByGroups(
 ): IGroupCategories[] {
   const allGroupCategories = new Map();
   categories.forEach((categorie) => {
-    if (categorie.group) {
+    if (!categorie.group) {
+      console.log(
+        "La catégorie id=" + categorie.id + " n'appartient à aucun groupe"
+      );
+    } else {
       const group: IGroup = categorie.group;
-      let groupCategories: IGroupCategories;
+      let groupCategories: IGroupCategories = allGroupCategories.get(group.id);
 
-      if (allGroupCategories.get(group.id)) {
-        groupCategories = allGroupCategories.get(group.id);
+      if (!!groupCategories) {
         groupCategories.categories.push(categorie);
       } else {
         groupCategories = {
@@ -20,10 +23,6 @@ export function orderCategoriesByGroups(
         };
       }
       allGroupCategories.set(group.id, groupCategories);
-    } else {
-      console.log(
-        "La catégorie id=" + categorie.id + " n'appartient à aucun groupe"
-      );
     }
   });
 

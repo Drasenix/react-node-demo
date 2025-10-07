@@ -24,7 +24,7 @@ export default function useCategories() {
 
     prepareAllVisibleCategories().catch((error) => console.error(error));
   }, []);
-
+  
   const allCategoriesGrouped: IGroupCategories[] = useMemo(
     () => orderCategoriesByGroups(allVisibleCategories),
     [allVisibleCategories]
