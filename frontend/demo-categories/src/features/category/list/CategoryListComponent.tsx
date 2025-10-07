@@ -14,6 +14,7 @@ import {
   applyFilterOnCategories,
 } from "../../../services/features/category/list/CategoryListService";
 import SearchBarComponent from "../../../components/SearchBarComponent";
+import SelectCategoryComponent from "../../../components/SelectCategoryComponent";
 
 interface IListProps {
   ordering: OrderingTypes;
@@ -65,23 +66,10 @@ function CategoryListComponent(props: IListProps) {
           filterCategories={filterCategories}
           setFilterCategories={setFilterCategories}
         />
-        <select
-          className="list-categories-select"
-          onChange={(event) => changeFilterGroupId(event.target.value)}
-        >
-          <option value="all">Tous les groupes de catégories</option>
-          {allCategoriesGrouped.map((groupCategories) => (
-            <option
-              key={groupCategories.group.id}
-              value={groupCategories.group.id}
-              onClick={() =>
-                changeFilterGroupId(groupCategories.group.id.toString())
-              }
-            >
-              {groupCategories.group.name}
-            </option>
-          ))}
-        </select>
+        <SelectCategoryComponent
+          groups={allCategoriesGrouped}
+          selectGroup={changeFilterGroupId}
+        ></SelectCategoryComponent>
       </div>
       {props.ordering === OrderingTypes.Alphabetical ? (
         <AlphabeticalCategoriesComponent
