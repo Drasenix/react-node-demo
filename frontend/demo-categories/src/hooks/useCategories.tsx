@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import { ICategory } from "../services/api/interfaces/Categorie";
+import { ICategory, IGroup } from "../services/api/interfaces/Categorie";
 import {
   applyFilterOnCategories,
   getAllVisibleCategories,
 } from "../services/features/category/list/CategoryListService";
-import { orderCategoriesByGroups } from "../services/features/category/list/ordered/group/GroupCategoriesService";
+import {
+  getGroupsFromCategories,
+  orderCategoriesByGroups,
+} from "../services/features/category/list/ordered/group/GroupCategoriesService";
 import { orderCategoriesAlphabetically } from "../services/features/category/list/ordered/alphabetically/AlphabeticalCategoriesService";
 import { IGroupCategories } from "../features/category/order/group/GroupsCategoriesComponent";
 
@@ -24,9 +27,9 @@ export default function useCategories() {
 
     prepareAllVisibleCategories().catch((error) => console.error(error));
   }, []);
-  
-  const allCategoriesGrouped: IGroupCategories[] = useMemo(
-    () => orderCategoriesByGroups(allVisibleCategories),
+
+  const groupsAvailable: IGroup[] = useMemo(
+    () => getGroupsFromCategories(allVisibleCategories),
     [allVisibleCategories]
   );
 
@@ -58,7 +61,7 @@ export default function useCategories() {
   );
 
   return {
-    allCategoriesGrouped,
+    groupsAvailable,
     filteredCategoriesGrouped,
     filteredCategoriesInAlphabeticalOrder,
     setFilterCategories,

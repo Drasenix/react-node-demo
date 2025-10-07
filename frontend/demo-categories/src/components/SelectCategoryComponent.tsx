@@ -1,7 +1,7 @@
-import { IGroupCategories } from "../features/category/order/group/GroupsCategoriesComponent";
+import { IGroup } from "../services/api/interfaces/Categorie";
 
 interface ISelectCategoryComponentProps {
-  groups: IGroupCategories[];
+  groups: IGroup[];
   selectFilterGroupId: Function;
 }
 
@@ -12,15 +12,13 @@ function SelectCategoryComponent(props: ISelectCategoryComponentProps) {
       onChange={(event) => props.selectFilterGroupId(event.target.value)}
     >
       <option value="all">Tous les groupes de catégories</option>
-      {props.groups.map((groupCategories) => (
+      {props.groups.map((group) => (
         <option
-          key={groupCategories.group.id}
-          value={groupCategories.group.id}
-          onClick={() =>
-            props.selectFilterGroupId(groupCategories.group.id.toString())
-          }
+          key={group.id}
+          value={group.id}
+          onClick={() => props.selectFilterGroupId(group.id.toString())}
         >
-          {groupCategories.group.name}
+          {group.name}
         </option>
       ))}
     </select>
