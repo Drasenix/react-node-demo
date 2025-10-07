@@ -14,6 +14,7 @@ export default function useCategories() {
   );
 
   const [filterCategories, setFilterCategories] = useState<string>("");
+  const [filterGroupId, setFilterGroupId] = useState<number | undefined>();
 
   useEffect(() => {
     async function prepareAllVisibleCategories() {
@@ -35,19 +36,33 @@ export default function useCategories() {
   );
 
   const filteredCategoriesGrouped: IGroupCategories[] = useMemo(
-    () => orderCategoriesByGroups(filteredVisibleCategories),
-    [filteredVisibleCategories]
+    () =>
+      !!filterGroupId
+        ? orderCategoriesByGroups(filteredVisibleCategories).filter(
+            (groupCategories: IGroupCategories) =>
+              groupCategories.group.id === filterGroupId
+          )
+        : orderCategoriesByGroups(filteredVisibleCategories),
+
+    [filteredVisibleCategories, filterGroupId]
   );
+
   const filteredCategoriesInAlphabeticalOrder: ICategory[] = useMemo(
-    () => orderCategoriesAlphabetically(filteredVisibleCategories),
-    [filteredVisibleCategories]
+    () =>
+      !!filterGroupId
+        ? orderCategoriesAlphabetically(filteredVisibleCategories).filter(
+            (category) => category.group?.id === filterGroupId
+          )
+        : orderCategoriesAlphabetically(filteredVisibleCategories),
+    [filteredVisibleCategories, filterGroupId]
   );
 
   return {
     allCategoriesGrouped,
     filterCategories,
-    setFilterCategories,
     filteredCategoriesGrouped,
     filteredCategoriesInAlphabeticalOrder,
+    setFilterCategories,
+    setFilterGroupId,
   };
 }

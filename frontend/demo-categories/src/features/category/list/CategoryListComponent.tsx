@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../../styles/features/category/list/CategoryListComponent.css";
 import { AlphabeticalCategoriesComponent } from "../order/alphabetically/AlphabeticalCategoriesComponent";
-import {
-  GroupsCategoriesComponent,
-  IGroupCategories,
-} from "../order/group/GroupsCategoriesComponent";
+import { GroupsCategoriesComponent } from "../order/group/GroupsCategoriesComponent";
 import { OrderingTypes } from "../CategoryMenuComponent";
 import SearchBarComponent from "../../../components/SearchBarComponent";
 import SelectCategoryComponent from "../../../components/SelectCategoryComponent";
@@ -15,7 +12,14 @@ interface IListProps {
 }
 
 function CategoryListComponent(props: IListProps) {
-  const [filterGroupId, setFilterGroupId] = useState<number | undefined>();
+  const {
+    allCategoriesGrouped,
+    filterCategories,
+    filteredCategoriesGrouped,
+    filteredCategoriesInAlphabeticalOrder,
+    setFilterCategories,
+    setFilterGroupId,
+  } = useCategories();
 
   function changeFilterGroupId(group_id: string) {
     if (group_id === "all") {
@@ -24,14 +28,6 @@ function CategoryListComponent(props: IListProps) {
       setFilterGroupId(Number(group_id));
     }
   }
-
-  const {
-    allCategoriesGrouped,
-    filterCategories,
-    setFilterCategories,
-    filteredCategoriesGrouped,
-    filteredCategoriesInAlphabeticalOrder,
-  } = useCategories();
   return (
     <>
       <div className="list-categories-header">
@@ -46,24 +42,11 @@ function CategoryListComponent(props: IListProps) {
       </div>
       {props.ordering === OrderingTypes.Alphabetical ? (
         <AlphabeticalCategoriesComponent
-          categories={
-            !!filterGroupId
-              ? filteredCategoriesInAlphabeticalOrder.filter(
-                  (category) => category.group?.id === filterGroupId
-                )
-              : filteredCategoriesInAlphabeticalOrder
-          }
+          categories={filteredCategoriesInAlphabeticalOrder}
         />
       ) : (
         <GroupsCategoriesComponent
-          groupsCategories={
-            !!filterGroupId
-              ? filteredCategoriesGrouped.filter(
-                  (groupCategories: IGroupCategories) =>
-                    groupCategories.group.id === filterGroupId
-                )
-              : filteredCategoriesGrouped
-          }
+          groupsCategories={filteredCategoriesGrouped}
         />
       )}
     </>
