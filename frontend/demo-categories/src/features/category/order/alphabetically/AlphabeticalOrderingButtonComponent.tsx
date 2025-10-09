@@ -1,8 +1,12 @@
 import OrderingButtonComponent from "../../../../components/OrderingButtonComponent";
-import alphabetical from "../../../../assets/img/features/category/list/ordered/alphabetically/alphabetical-order.png";
-import alphabetical_active from "../../../../assets/img/features/category/list/ordered/alphabetically/alphabetical-order-active.png";
+import { OrderingTypes } from "../../CategoryMenuComponent";
+import {
+  IStyleOrderingButtonResult,
+  useStyleForOrderingButton,
+} from "../../../../hooks/categories/useStyledOrderingButton";
 
 interface IAlphabeticalOrderingButtonComponentProps {
+  ordering: OrderingTypes;
   isActive: boolean;
   changeOrdering: Function;
 }
@@ -10,17 +14,13 @@ interface IAlphabeticalOrderingButtonComponentProps {
 function AlphabeticalOrderingButtonComponent(
   props: IAlphabeticalOrderingButtonComponentProps
 ) {
+  const style: IStyleOrderingButtonResult = useStyleForOrderingButton(
+    props.ordering,
+    props.isActive
+  );
   return (
     <OrderingButtonComponent
-      class={
-        "alphabetical-order-categories-btn category-order-" +
-        (props.isActive ? "active" : "inactive")
-      }
-      src={props.isActive ? alphabetical_active : alphabetical}
-      alt={
-        (props.isActive ? "(Actif)" : "(Inactif)") +
-        " Boutton qui permet de trier les catégories par ordre alphabétique"
-      }
+      {...style}
       text={"Ordre alphabétique"}
       selectOrdering={() => props.changeOrdering()}
     ></OrderingButtonComponent>

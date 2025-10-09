@@ -21,10 +21,12 @@ function CategoryMenuComponent() {
         <GroupOrderingButtonComponent
           isActive={ordering === OrderingTypes.Group}
           changeOrdering={() => changeOrdering(OrderingTypes.Group)}
+          ordering={OrderingTypes.Group}
         />
         <AlphabeticalOrderingButtonComponent
           isActive={ordering === OrderingTypes.Alphabetical}
           changeOrdering={() => changeOrdering(OrderingTypes.Alphabetical)}
+          ordering={OrderingTypes.Alphabetical}
         />
       </header>
 
