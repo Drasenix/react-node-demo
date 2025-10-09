@@ -1,8 +1,12 @@
 import OrderingButtonComponent from "../../../../components/OrderingButtonComponent";
-import group from "../../../../assets/img/features/category/list/ordered/group/group.png";
-import group_active from "../../../../assets/img/features/category/list/ordered/group/group-active.png";
+import {
+  IStyleOrderingButtonResult,
+  useStyleForOrderingButton,
+} from "../../../../hooks/categories/useStyledOrderingButton";
+import { OrderingTypes } from "../../CategoryMenuComponent";
 
 interface IGroupOrderingButtonComponentProps {
+  ordering: OrderingTypes;
   isActive: boolean;
   changeOrdering: Function;
 }
@@ -10,17 +14,14 @@ interface IGroupOrderingButtonComponentProps {
 function GroupOrderingButtonComponent(
   props: IGroupOrderingButtonComponentProps
 ) {
+  const style: IStyleOrderingButtonResult = useStyleForOrderingButton(
+    props.ordering,
+    props.isActive
+  );
+
   return (
     <OrderingButtonComponent
-      class={
-        "group-categories-btn category-order-" +
-        (props.isActive ? "active" : "inactive")
-      }
-      src={props.isActive ? group_active : group}
-      alt={
-        (props.isActive ? "(Actif)" : " (Inactif)") +
-        " Boutton qui permet de regrouper les catégories par groupes"
-      }
+      {...style}
       text={"Groupe de catégorie"}
       selectOrdering={() => props.changeOrdering()}
     ></OrderingButtonComponent>
