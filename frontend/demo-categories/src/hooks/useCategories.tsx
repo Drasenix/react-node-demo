@@ -1,32 +1,19 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ICategory, IGroup } from "../services/api/interfaces/Categorie";
-import {
-  applyFilterOnCategories,
-  getAllVisibleCategories,
-} from "../services/features/category/list/CategoryListService";
+import { applyFilterOnCategories } from "../services/features/category/list/CategoryListService";
 import {
   getGroupsFromCategories,
   orderCategoriesByGroups,
 } from "../services/features/category/list/ordered/group/GroupCategoriesService";
 import { orderCategoriesAlphabetically } from "../services/features/category/list/ordered/alphabetically/AlphabeticalCategoriesService";
 import { IGroupCategories } from "../features/category/order/group/GroupsCategoriesComponent";
+import { useFetchCategories } from "./useFetchCategories";
 
 export default function useCategories() {
-  const [allVisibleCategories, setAllVisibleCategories] = useState<ICategory[]>(
-    []
-  );
+  const [allVisibleCategories] = useState<ICategory[]>(useFetchCategories());
 
   const [filterCategories, setFilterCategories] = useState<string>("");
   const [filterGroupId, setFilterGroupId] = useState<number | undefined>();
-
-  useEffect(() => {
-    async function prepareAllVisibleCategories() {
-      const allVisibleCategories: ICategory[] = await getAllVisibleCategories();
-      setAllVisibleCategories(allVisibleCategories);
-    }
-
-    prepareAllVisibleCategories().catch((error) => console.error(error));
-  }, []);
 
   const groupsAvailable: IGroup[] = useMemo(
     () => getGroupsFromCategories(allVisibleCategories),
