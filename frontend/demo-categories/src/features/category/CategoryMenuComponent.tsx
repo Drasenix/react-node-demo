@@ -31,7 +31,7 @@ function CategoryMenuComponent() {
 
       <main className="Main-main">
         <div className="main-container">
-          <CategoryListComponent ordering={ordering} />
+          <CategoryListComponent orderingType={ordering} />
         </div>
       </main>
 
