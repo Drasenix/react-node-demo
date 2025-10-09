@@ -3,11 +3,10 @@ import { OrderingTypes } from "../../CategoryMenuComponent";
 import {
   IStyleOrderingButtonResult,
   useStyleForOrderingButton,
-} from "../../../../hooks/categories/useStyledOrderingButton";
+} from "../../../../hooks/categories/useStyleForOrderingButton";
 
 interface IAlphabeticalOrderingButtonComponentProps {
   ordering: OrderingTypes;
-  isActive: boolean;
   changeOrdering: Function;
 }
 
@@ -15,8 +14,8 @@ function AlphabeticalOrderingButtonComponent(
   props: IAlphabeticalOrderingButtonComponentProps
 ) {
   const style: IStyleOrderingButtonResult = useStyleForOrderingButton(
-    props.ordering,
-    props.isActive
+    OrderingTypes.Alphabetical,
+    props.ordering
   );
   return (
     <OrderingButtonComponent

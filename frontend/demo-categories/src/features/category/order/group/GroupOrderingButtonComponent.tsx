@@ -2,12 +2,11 @@ import OrderingButtonComponent from "../../../../components/OrderingButtonCompon
 import {
   IStyleOrderingButtonResult,
   useStyleForOrderingButton,
-} from "../../../../hooks/categories/useStyledOrderingButton";
+} from "../../../../hooks/categories/useStyleForOrderingButton";
 import { OrderingTypes } from "../../CategoryMenuComponent";
 
 interface IGroupOrderingButtonComponentProps {
   ordering: OrderingTypes;
-  isActive: boolean;
   changeOrdering: Function;
 }
 
@@ -15,8 +14,8 @@ function GroupOrderingButtonComponent(
   props: IGroupOrderingButtonComponentProps
 ) {
   const style: IStyleOrderingButtonResult = useStyleForOrderingButton(
-    props.ordering,
-    props.isActive
+    OrderingTypes.Group,
+    props.ordering
   );
 
   return (
