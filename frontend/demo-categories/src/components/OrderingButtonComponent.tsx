@@ -1,19 +1,26 @@
 import React from "react";
 import "../styles/features/category/OrderingButtonComponent.css";
+import {
+  IStyleOrderingButtonResult,
+  useStyleForOrderingButton,
+} from "../hooks/categories/useStyleForOrderingButton";
+import { OrderingTypes } from "../features/category/CategoryMenuComponent";
 
 interface IOrderingButtonComponentProps {
-  class: string;
-  src: string;
-  alt: string;
-  text: string;
-  selectOrdering: Function;
+  orderingType: OrderingTypes;
+  currentOrderingType: OrderingTypes;
+  selectOrderingType: Function;
 }
 
 function OrderingButtonComponent(props: IOrderingButtonComponentProps) {
+  const style: IStyleOrderingButtonResult = useStyleForOrderingButton(
+    props.orderingType,
+    props.currentOrderingType
+  );
   return (
-    <button className={props.class} onClick={() => props.selectOrdering()}>
-      <img className="category-order-btn-img" src={props.src} alt={props.alt} />
-      <p className="category-order-btn-text">{props.text}</p>
+    <button className={style.class} onClick={() => props.selectOrderingType()}>
+      <img className="category-order-btn-img" src={style.src} alt={style.alt} />
+      <p className="category-order-btn-text">{style.text}</p>
     </button>
   );
 }
