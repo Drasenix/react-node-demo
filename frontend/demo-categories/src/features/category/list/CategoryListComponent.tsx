@@ -8,7 +8,7 @@ import SelectCategoryComponent from "../../../components/SelectCategoryComponent
 import useCategories from "../../../hooks/categories/useCategories";
 
 interface IListProps {
-  ordering: OrderingTypes;
+  orderingType: OrderingTypes;
 }
 
 function CategoryListComponent(props: IListProps) {
@@ -36,7 +36,7 @@ function CategoryListComponent(props: IListProps) {
           selectFilterGroupId={changeFilterGroupId}
         ></SelectCategoryComponent>
       </div>
-      {props.ordering === OrderingTypes.Alphabetical ? (
+      {props.orderingType === OrderingTypes.Alphabetical ? (
         <AlphabeticalCategoriesComponent
           categories={filteredCategoriesInAlphabeticalOrder}
         />
