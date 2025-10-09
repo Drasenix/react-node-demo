@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../styles/features/category/list/CategoryListComponent.css";
 import { AlphabeticalCategoriesComponent } from "../order/alphabetically/AlphabeticalCategoriesComponent";
 import { GroupsCategoriesComponent } from "../order/group/GroupsCategoriesComponent";
@@ -13,11 +13,10 @@ interface IListProps {
 
 function CategoryListComponent(props: IListProps) {
   const {
-    groupsAvailable,
-    filteredCategoriesGrouped,
-    filteredCategoriesInAlphabeticalOrder,
     setFilterCategories,
     setFilterGroupId,
+    filteredCategoriesInAlphabeticalOrder,
+    filteredCategoriesGrouped,
   } = useCategories();
 
   function changeFilterGroupId(group_id: string) {
@@ -32,7 +31,6 @@ function CategoryListComponent(props: IListProps) {
       <div className="list-categories-header">
         <SearchBarComponent setFilterCategories={setFilterCategories} />
         <SelectCategoryComponent
-          groups={groupsAvailable}
           selectFilterGroupId={changeFilterGroupId}
         ></SelectCategoryComponent>
       </div>
