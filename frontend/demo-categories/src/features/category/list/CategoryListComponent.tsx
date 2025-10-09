@@ -5,7 +5,7 @@ import { GroupsCategoriesComponent } from "../order/group/GroupsCategoriesCompon
 import { OrderingTypes } from "../CategoryMenuComponent";
 import SearchBarComponent from "../../../components/SearchBarComponent";
 import SelectCategoryComponent from "../../../components/SelectCategoryComponent";
-import useCategories from "../../../hooks/useCategories";
+import useCategories from "../../../hooks/categories/useCategories";
 
 interface IListProps {
   ordering: OrderingTypes;
