@@ -19,14 +19,12 @@ function CategoryMenuComponent() {
       <header className="Main-header">
         <p className="title-categories">Catégories</p>
         <GroupOrderingButtonComponent
-          isActive={ordering === OrderingTypes.Group}
           changeOrdering={() => changeOrdering(OrderingTypes.Group)}
-          ordering={OrderingTypes.Group}
+          ordering={ordering}
         />
         <AlphabeticalOrderingButtonComponent
-          isActive={ordering === OrderingTypes.Alphabetical}
           changeOrdering={() => changeOrdering(OrderingTypes.Alphabetical)}
-          ordering={OrderingTypes.Alphabetical}
+          ordering={ordering}
         />
       </header>
 

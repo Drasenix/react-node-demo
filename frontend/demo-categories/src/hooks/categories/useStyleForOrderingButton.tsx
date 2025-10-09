@@ -12,18 +12,21 @@ export interface IStyleOrderingButtonResult {
 }
 
 export function useStyleForOrderingButton(
-  ordering: OrderingTypes,
-  isActive: boolean
-): IStyleOrderingButtonResult {
-  switch (ordering) {
+  orderingType: OrderingTypes,
+  currentOrdering: OrderingTypes
+) {
+  switch (orderingType) {
     case OrderingTypes.Alphabetical:
-      return createStyleForAlphabeticalOrderingButton(isActive);
+      return getStyleForAlphabeticalOrderingButton(currentOrdering);
     case OrderingTypes.Group:
-      return createStyleForGroupOrderingButton(isActive);
+      return getStyleForGroupOrderingButton(currentOrdering);
   }
 }
 
-function createStyleForAlphabeticalOrderingButton(isActive: boolean) {
+function getStyleForAlphabeticalOrderingButton(
+  currentOrdering: OrderingTypes
+): IStyleOrderingButtonResult {
+  const isActive: boolean = currentOrdering === OrderingTypes.Alphabetical;
   return {
     class:
       "alphabetical-order-categories-btn category-order-" +
@@ -36,7 +39,10 @@ function createStyleForAlphabeticalOrderingButton(isActive: boolean) {
   };
 }
 
-function createStyleForGroupOrderingButton(isActive: boolean) {
+function getStyleForGroupOrderingButton(
+  currentOrdering: OrderingTypes
+): IStyleOrderingButtonResult {
+  const isActive: boolean = currentOrdering === OrderingTypes.Group;
   return {
     class:
       "group-categories-btn category-order-" +
