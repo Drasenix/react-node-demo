@@ -5,9 +5,9 @@ import {
 import {
   getVisibleCategories,
   getAllCategories,
-} from "../services/api/CategoryService";
-import { IVisibleCategorie } from "../services/api/interfaces/VisibleCategorie";
-import { ICategory } from "../services/api/interfaces/Categorie";
+} from "../../services/api/CategoryService";
+import { IVisibleCategorie } from "../../services/api/interfaces/VisibleCategorie";
+import { ICategory } from "../../services/api/interfaces/Categorie";
 
 export const useFetchCategories = () => {
   const visibleCategories: UseSuspenseQueryResult<IVisibleCategorie[], Error> =
