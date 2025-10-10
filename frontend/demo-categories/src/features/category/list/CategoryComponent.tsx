@@ -1,5 +1,9 @@
-import { ICategory } from "../../../services/api/interfaces/Categorie";
+import { ICategory, IGroup } from "../../../services/api/interfaces/Categorie";
 import "../../../styles/features/category/list/CategoryComponent.css";
+
+interface ICategoryTitleProps {
+  group: IGroup | undefined;
+}
 
 interface ICategoryProps {
   category: ICategory;
@@ -18,3 +22,15 @@ export function CategoryComponent(props: ICategoryProps) {
     </div>
   );
 }
+
+export function Title(props: ICategoryTitleProps) {
+  return (
+    !!props.group && (
+      <div className={"category-name-title " + props.group.color}>
+        {props.group.name}
+      </div>
+    )
+  );
+}
+
+CategoryComponent.Title = Title;
