@@ -1,7 +1,11 @@
 import { useMemo } from "react";
-import { IGroupCategories } from "../../features/category/order/group/GroupsCategoriesComponent";
-import { ICategory } from "../../services/api/interfaces/Categorie";
+import { ICategory, IGroup } from "../../services/api/interfaces/Categorie";
 import { orderCategoriesByGroups } from "../../services/features/category/list/ordered/group/GroupCategoriesService";
+
+export interface IGroupCategories {
+  group: IGroup;
+  categories: ICategory[];
+}
 
 export default function useGroupedCategories(
   categories: ICategory[],

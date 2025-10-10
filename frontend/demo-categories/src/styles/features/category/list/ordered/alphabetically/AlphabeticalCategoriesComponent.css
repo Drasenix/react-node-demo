@@ -1,9 +1,12 @@
-.alphabetical-categories-list {
+.categories-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   list-style-type: none;
+  padding: 0;  
+}
+
+.alphabetical {
   margin: 0;
-  padding: 0;
   width: 100%;
   border-top: solid 1px #dce4ed;
 }
