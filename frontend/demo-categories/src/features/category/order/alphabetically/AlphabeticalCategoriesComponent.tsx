@@ -36,9 +36,7 @@ export function AlphabeticalCategoriesComponent(props: IAlpheticalProps) {
             selectCategory={changeSelectedCategory}
           >
             <CategoryComponent key={category.id} category={category}>
-              <div className={"category-name-title " + category.group?.color}>
-                {category.group?.name}
-              </div>
+              <CategoryComponent.Title group={category.group} />
             </CategoryComponent>
           </CategoryItemComponent>
         ))}
