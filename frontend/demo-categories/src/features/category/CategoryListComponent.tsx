@@ -1,9 +1,9 @@
 import React from "react";
-import "../../../styles/features/category/list/CategoryListComponent.css";
-import { AlphabeticalCategoriesComponent } from "../order/alphabetically/AlphabeticalCategoriesComponent";
-import { GroupsCategoriesComponent } from "../order/group/GroupsCategoriesComponent";
-import { OrderingTypes } from "../CategoryMenuComponent";
-import { ICategory } from "../../../services/api/interfaces/Categorie";
+import "../../styles/features/category/list/CategoryListComponent.css";
+import { GroupsCategoriesComponent } from "./order/group/GroupsCategoriesComponent";
+import { ICategory } from "../../services/api/interfaces/Categorie";
+import { OrderingTypes } from "./CategoryMenuComponent";
+import { AlphabeticalCategoriesComponent } from "./order/alphabetically/AlphabeticalCategoriesComponent";
 
 interface IListProps {
   orderingType: OrderingTypes;

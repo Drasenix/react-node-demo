@@ -1,10 +1,10 @@
 import { ICategory } from "../../../../services/api/interfaces/Categorie";
 import "../../../../styles/features/category/list/ordered/alphabetically/AlphabeticalCategoriesComponent.css";
 import { useState } from "react";
-import { CategoryComponent } from "../../list/CategoryComponent";
-import { CategoryItemComponent } from "../../list/CategoryItemComponent";
+import { CategoryComponent } from "../../CategoryComponent";
+import { CategoryItemComponent } from "../../CategoryItemComponent";
 import useCategoriesInAlphabeticalOrder from "../../../../hooks/categories/useCategoriesInAlphabeticalOrder";
-import CategoriesComponent from "../../list/CategoriesComponent";
+import CategoriesComponent from "../../CategoriesComponent";
 import { OrderingTypes } from "../../CategoryMenuComponent";
 
 interface IAlpheticalProps {
