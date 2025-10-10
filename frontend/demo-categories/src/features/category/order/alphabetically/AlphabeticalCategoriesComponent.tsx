@@ -25,7 +25,7 @@ export function AlphabeticalCategoriesComponent(props: IAlpheticalProps) {
     <ul className={"alphabetical-categories-list " + class_name_even_or_odd}>
       <CategoriesComponent
         ordering={OrderingTypes.Alphabetical}
-        categories={props.categories}
+        categories={categoriesInAlphabeticalOrder}
       />
     </ul>
   );
