@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchBarComponent from "../../components/SearchBarComponent";
 import SelectCategoryComponent from "../../components/SelectCategoryComponent";
 import useFilteredCategories from "../../hooks/categories/useFilteredCategories";
-import CategoryListComponent from "./list/CategoryListComponent";
+import CategoryListComponent from "./CategoryListComponent";
 import { OrderingTypes } from "./CategoryMenuComponent";
 
 interface ICategoryMainComponentPops {

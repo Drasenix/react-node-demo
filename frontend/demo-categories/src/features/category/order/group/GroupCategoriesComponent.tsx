@@ -1,6 +1,6 @@
 import { IGroupCategories } from "./GroupsCategoriesComponent";
 import "../../../../styles/features/category/list/ordered/group/GroupCategoriesComponent.css";
-import CategoriesComponent from "../../list/CategoriesComponent";
+import CategoriesComponent from "../../CategoriesComponent";
 import { OrderingTypes } from "../../CategoryMenuComponent";
 interface IGroupCategoryProps {
   groupCategories: IGroupCategories;
@@ -19,7 +19,10 @@ export function GroupCategoriesComponent(props: IGroupCategoryProps) {
         {props.groupCategories.group.name}
       </div>
       <ul className={"group-categories-list " + class_name_even_or_odd}>
-        <CategoriesComponent ordering={OrderingTypes.Group} categories={props.groupCategories.categories} />
+        <CategoriesComponent
+          ordering={OrderingTypes.Group}
+          categories={props.groupCategories.categories}
+        />
       </ul>
     </li>
   );

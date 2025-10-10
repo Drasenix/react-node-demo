@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ICategory } from "../../../services/api/interfaces/Categorie";
+import { ICategory } from "../../services/api/interfaces/Categorie";
 import { CategoryComponent } from "./CategoryComponent";
 import { CategoryItemComponent } from "./CategoryItemComponent";
-import { OrderingTypes } from "../CategoryMenuComponent";
+import { OrderingTypes } from "./CategoryMenuComponent";
 
 interface ICategoriesComponentProps {
   ordering: OrderingTypes;
