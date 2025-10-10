@@ -1,5 +1,5 @@
+import { IGroupCategories } from "../../../../../../hooks/categories/useGroupedCategories";
 import { ICategory, IGroup } from "../../../../../api/interfaces/Categorie";
-import { IGroupCategories } from "../../../../../../features/category/order/group/GroupsCategoriesComponent";
 
 export function getGroupsFromCategories(categories: ICategory[]): IGroup[] {
   const groups_with_duplicates_entries: IGroup[] = Array.from(

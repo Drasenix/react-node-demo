@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useStyleForCategories } from "../../hooks/categories/useStyleForCategories";
 import { ICategory } from "../../services/api/interfaces/Categorie";
 import { CategoryComponent } from "./CategoryComponent";
 import { CategoryItemComponent } from "./CategoryItemComponent";
@@ -9,23 +9,22 @@ interface ICategoriesComponentProps {
   categories: ICategory[];
 }
 export default function CategoriesComponent(props: ICategoriesComponentProps) {
-  const [selectedCategory, setSelectedCategory] = useState(-1);
-  function changeSelectedCategory(id_category: number) {
-    setSelectedCategory(id_category);
-  }
+  const className: string = useStyleForCategories(
+    props.categories,
+    props.ordering
+  );
 
-  return props.categories.map((category) => (
-    <CategoryItemComponent
-      key={category.id}
-      category={category}
-      isSelected={category.id === selectedCategory}
-      selectCategory={changeSelectedCategory}
-    >
-      <CategoryComponent key={category.id} category={category}>
-        {props.ordering === OrderingTypes.Alphabetical && (
-          <CategoryComponent.Title group={category.group} />
-        )}
-      </CategoryComponent>
-    </CategoryItemComponent>
-  ));
+  return (
+    <ul className={className}>
+      {props.categories.map((category) => (
+        <CategoryItemComponent key={category.id} category={category}>
+          <CategoryComponent key={category.id} category={category}>
+            {props.ordering === OrderingTypes.Alphabetical && (
+              <CategoryComponent.Title group={category.group} />
+            )}
+          </CategoryComponent>
+        </CategoryItemComponent>
+      ))}
+    </ul>
+  );
 }

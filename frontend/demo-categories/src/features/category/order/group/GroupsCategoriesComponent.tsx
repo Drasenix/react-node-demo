@@ -1,48 +1,36 @@
-import useGroupedCategories from "../../../../hooks/categories/useGroupedCategories";
-import {
-  IGroup,
-  ICategory,
-} from "../../../../services/api/interfaces/Categorie";
+import useGroupedCategories, {
+  IGroupCategories,
+} from "../../../../hooks/categories/useGroupedCategories";
+import { ICategory } from "../../../../services/api/interfaces/Categorie";
 import "../../../../styles/features/category/list/ordered/group/GroupsCategoriesComponent.css";
-import { GroupCategoriesComponent } from "./GroupCategoriesComponent";
-import { useState } from "react";
+import "../../../../styles/features/category/list/ordered/group/GroupCategoriesComponent.css";
+import CategoriesComponent from "../../CategoriesComponent";
+import { OrderingTypes } from "../../CategoryMenuComponent";
+import GroupItemComponent from "./GroupItemComponent";
+import { SelectedCategoryContextProvider } from "../../../../hooks/categories/context/SelectedCategoryContext";
 interface IGroupProps {
   categories: ICategory[];
   filterGroupId: number | undefined;
 }
 
-export interface IGroupCategories {
-  group: IGroup;
-  categories: ICategory[];
-}
-
 export function GroupsCategoriesComponent(props: IGroupProps) {
-  const [groupHavingSelectedCategory, setGroupHavingSelectedCategory] =
-    useState(-1);
-
   const groupedCategories: IGroupCategories[] = useGroupedCategories(
     props.categories,
     props.filterGroupId
   );
 
-  function changeGroupHavingSelectedCategory(id_group: number) {
-    setGroupHavingSelectedCategory(id_group);
-  }
-
   return (
-    <ul className="groups-categories-list">
-      {groupedCategories.map((groupCategories) => (
-        <GroupCategoriesComponent
-          key={groupCategories.group.id}
-          groupCategories={groupCategories}
-          changeGroupContainingSelectedCategory={
-            changeGroupHavingSelectedCategory
-          }
-          containsSelectedCategory={
-            groupHavingSelectedCategory === groupCategories.group.id
-          }
-        />
-      ))}
-    </ul>
+    <SelectedCategoryContextProvider>
+      <ul className="groups-categories-list">
+        {groupedCategories.map((groupCategories) => (
+          <GroupItemComponent group={groupCategories.group}>
+            <CategoriesComponent
+              ordering={OrderingTypes.Group}
+              categories={groupCategories.categories}
+            />
+          </GroupItemComponent>
+        ))}
+      </ul>
+    </SelectedCategoryContextProvider>
   );
 }

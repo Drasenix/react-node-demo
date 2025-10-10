@@ -12,20 +12,16 @@ interface IListProps {
 }
 
 function CategoryListComponent(props: IListProps) {
-  return (
-    <>
-      {props.orderingType === OrderingTypes.Alphabetical ? (
-        <AlphabeticalCategoriesComponent
-          categories={props.categories}
-          filterGroupId={props.filterGroupId}
-        />
-      ) : (
-        <GroupsCategoriesComponent
-          categories={props.categories}
-          filterGroupId={props.filterGroupId}
-        />
-      )}
-    </>
+  return props.orderingType === OrderingTypes.Alphabetical ? (
+    <AlphabeticalCategoriesComponent
+      categories={props.categories}
+      filterGroupId={props.filterGroupId}
+    />
+  ) : (
+    <GroupsCategoriesComponent
+      categories={props.categories}
+      filterGroupId={props.filterGroupId}
+    />
   );
 }
 

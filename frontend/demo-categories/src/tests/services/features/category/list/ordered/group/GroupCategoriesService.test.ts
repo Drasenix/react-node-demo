@@ -1,4 +1,4 @@
-import { IGroupCategories } from "../../../../../../../features/category/order/group/GroupsCategoriesComponent";
+import { IGroupCategories } from "../../../../../../../hooks/categories/useGroupedCategories";
 import { ICategory } from "../../../../../../../services/api/interfaces/Categorie";
 import { orderCategoriesByGroups } from "../../../../../../../services/features/category/list/ordered/group/GroupCategoriesService";
 import { expect, it, jest } from "@jest/globals";
