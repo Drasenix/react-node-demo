@@ -4,6 +4,8 @@ import { useState } from "react";
 import { CategoryComponent } from "../../list/CategoryComponent";
 import { CategoryItemComponent } from "../../list/CategoryItemComponent";
 import useCategoriesInAlphabeticalOrder from "../../../../hooks/categories/useCategoriesInAlphabeticalOrder";
+import CategoriesComponent from "../../list/CategoriesComponent";
+import { OrderingTypes } from "../../CategoryMenuComponent";
 
 interface IAlpheticalProps {
   categories: ICategory[];
@@ -11,14 +13,8 @@ interface IAlpheticalProps {
 }
 
 export function AlphabeticalCategoriesComponent(props: IAlpheticalProps) {
-  const [selectedCategory, setSelectedCategory] = useState(-1);
-
   const categoriesInAlphabeticalOrder: ICategory[] =
     useCategoriesInAlphabeticalOrder(props.categories, props.filterGroupId);
-
-  function changeSelectedCategory(id_category: number) {
-    setSelectedCategory(id_category);
-  }
 
   const class_name_even_or_odd: string =
     categoriesInAlphabeticalOrder.length % 2 === 0
@@ -26,21 +22,11 @@ export function AlphabeticalCategoriesComponent(props: IAlpheticalProps) {
       : "odd-nb-categories";
 
   return (
-    <>
-      <ul className={"alphabetical-categories-list " + class_name_even_or_odd}>
-        {categoriesInAlphabeticalOrder.map((category) => (
-          <CategoryItemComponent
-            key={category.id}
-            category={category}
-            isSelected={category.id === selectedCategory}
-            selectCategory={changeSelectedCategory}
-          >
-            <CategoryComponent key={category.id} category={category}>
-              <CategoryComponent.Title group={category.group} />
-            </CategoryComponent>
-          </CategoryItemComponent>
-        ))}
-      </ul>
-    </>
+    <ul className={"alphabetical-categories-list " + class_name_even_or_odd}>
+      <CategoriesComponent
+        ordering={OrderingTypes.Alphabetical}
+        categories={props.categories}
+      />
+    </ul>
   );
 }
