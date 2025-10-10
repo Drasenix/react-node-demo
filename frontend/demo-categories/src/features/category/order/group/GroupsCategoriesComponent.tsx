@@ -1,3 +1,4 @@
+import useGroupedCategories from "../../../../hooks/categories/useGroupedCategories";
 import {
   IGroup,
   ICategory,
@@ -6,7 +7,8 @@ import "../../../../styles/features/category/list/ordered/group/GroupsCategories
 import { GroupCategoriesComponent } from "./GroupCategoriesComponent";
 import { useState } from "react";
 interface IGroupProps {
-  groupsCategories: IGroupCategories[];
+  categories: ICategory[];
+  filterGroupId: number | undefined;
 }
 
 export interface IGroupCategories {
@@ -18,13 +20,18 @@ export function GroupsCategoriesComponent(props: IGroupProps) {
   const [groupHavingSelectedCategory, setGroupHavingSelectedCategory] =
     useState(-1);
 
+  const groupedCategories: IGroupCategories[] = useGroupedCategories(
+    props.categories,
+    props.filterGroupId
+  );
+
   function changeGroupHavingSelectedCategory(id_group: number) {
     setGroupHavingSelectedCategory(id_group);
   }
 
   return (
     <ul className="groups-categories-list">
-      {props.groupsCategories.map((groupCategories) => (
+      {groupedCategories.map((groupCategories) => (
         <GroupCategoriesComponent
           key={groupCategories.group.id}
           groupCategories={groupCategories}

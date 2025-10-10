@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../../styles/features/category/CategoryMenuComponent.css";
-import CategoryListComponent from "./list/CategoryListComponent";
-import OrderingButtonComponent from "../../components/OrderingButtonComponent";
+import CategoryMainComponent from "./CategoryMainComponent";
+import CategoryFooterComponent from "./CategoryFooterComponent";
+import CategoryHeaderComponent from "./CategoryHeaderComponent";
 
 export enum OrderingTypes {
   Alphabetical = "alphabetical",
@@ -13,33 +14,15 @@ function CategoryMenuComponent() {
   function changeOrdering(ordering: OrderingTypes) {
     setOrdering(ordering);
   }
+
   return (
     <>
-      <header className="Main-header">
-        <p className="title-categories">Catégories</p>
-        <OrderingButtonComponent
-          orderingType={OrderingTypes.Group}
-          currentOrderingType={ordering}
-          selectOrderingType={() => changeOrdering(OrderingTypes.Group)}
-        ></OrderingButtonComponent>
-        <OrderingButtonComponent
-          orderingType={OrderingTypes.Alphabetical}
-          currentOrderingType={ordering}
-          selectOrderingType={() => changeOrdering(OrderingTypes.Alphabetical)}
-        ></OrderingButtonComponent>
-      </header>
-
-      <main className="Main-main">
-        <div className="main-container">
-          <CategoryListComponent orderingType={ordering} />
-        </div>
-      </main>
-
-      <footer className="Main-footer">
-        <button className="category-select-btn">
-          <p className="category-select-btn-txt">Sélectionner la catégorie</p>
-        </button>
-      </footer>
+      <CategoryHeaderComponent
+        ordering={ordering}
+        selectOrderingType={changeOrdering}
+      />
+      <CategoryMainComponent ordering={ordering} />
+      <CategoryFooterComponent />
     </>
   );
 }
