@@ -23,7 +23,10 @@ export function GroupsCategoriesComponent(props: IGroupProps) {
     <SelectedCategoryContextProvider>
       <ul className="groups-categories-list">
         {groupedCategories.map((groupCategories) => (
-          <GroupItemComponent group={groupCategories.group}>
+          <GroupItemComponent
+            key={groupCategories.group.id}
+            group={groupCategories.group}
+          >
             <CategoriesComponent
               ordering={OrderingTypes.Group}
               categories={groupCategories.categories}
