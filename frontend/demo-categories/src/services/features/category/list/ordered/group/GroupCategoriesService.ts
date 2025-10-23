@@ -16,30 +16,18 @@ export function getGroupsFromCategories(categories: ICategory[]): IGroup[] {
 export function orderCategoriesByGroups(
   categories: ICategory[]
 ): IGroupCategories[] {
-  const allGroupCategories = new Map();
-  categories.forEach((categorie) => {
-    if (!categorie.group) {
-      console.log(
-        "La catégorie id=" + categorie.id + " n'appartient à aucun groupe"
-      );
-    } else {
-      const group: IGroup = categorie.group;
-      let groupCategories: IGroupCategories = allGroupCategories.get(group.id);
-
-      if (!!groupCategories) {
-        groupCategories.categories.push(categorie);
-      } else {
-        groupCategories = {
-          group,
-          categories: [categorie],
-        };
-      }
-      allGroupCategories.set(group.id, groupCategories);
-    }
-  });
-
-  return Array.from(allGroupCategories, ([id, groupCategory]) => ({
-    group: groupCategory.group,
-    categories: groupCategory.categories,
-  }));
+  const categoriesInGroup: Required<ICategory>[] = categories.filter(
+    (categorie: ICategory): categorie is Required<ICategory> =>
+      !!categorie.group
+  );
+  return categoriesInGroup.reduce(
+    (groupedCategories: IGroupCategories[], categorie: Required<ICategory>) => {
+      const key = categorie.group.id;
+      if (!groupedCategories[key])
+        groupedCategories[key] = { group: categorie.group, categories: [] };
+      groupedCategories[key].categories.push(categorie);
+      return groupedCategories;
+    },
+    []
+  );
 }
