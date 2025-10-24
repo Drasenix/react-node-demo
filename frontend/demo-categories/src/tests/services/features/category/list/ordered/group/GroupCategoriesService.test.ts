@@ -1,7 +1,80 @@
 import { IGroupCategories } from "../../../../../../../hooks/categories/useGroupedCategories";
-import { ICategory } from "../../../../../../../services/api/interfaces/Categorie";
-import { orderCategoriesByGroups } from "../../../../../../../services/features/category/list/ordered/group/GroupCategoriesService";
-import { expect, it, jest } from "@jest/globals";
+import {
+  ICategory,
+  IGroup,
+} from "../../../../../../../services/api/interfaces/Categorie";
+import {
+  getGroupsFromCategories,
+  orderCategoriesByGroups,
+} from "../../../../../../../services/features/category/list/ordered/group/GroupCategoriesService";
+import { expect, it } from "@jest/globals";
+
+it("should return all groups from given categories without dupliucates", () => {
+  // Given
+  const category_with_group_one: ICategory = {
+    id: 1,
+    group: {
+      id: 1,
+      name: "groupe 1",
+      color: "m-blue",
+    },
+    wording: "AAA",
+    description: "desc",
+  };
+
+  const category_with_group_one_again: ICategory = {
+    id: 4,
+    wording: "AAAAbis",
+    group: {
+      id: 1,
+      name: "groupe 1",
+      color: "m-blue",
+    },
+    description: "desc",
+  };
+
+  const category_with_group_two: ICategory = {
+    id: 1,
+    group: {
+      id: 2,
+      name: "groupe 2",
+      color: "m-pink",
+    },
+    wording: "BBB",
+    description: "desc",
+  };
+
+  const category_without_group: ICategory = {
+    id: 3,
+    wording: "CCC",
+    description: "desc",
+  };
+
+  const categories: ICategory[] = [
+    category_with_group_one,
+    category_with_group_two,
+    category_without_group,
+    category_with_group_one_again,
+  ];
+
+  // When
+  const result: IGroup[] = getGroupsFromCategories(categories);
+
+  // Then
+  const expected_result: IGroup[] = [
+    {
+      id: 1,
+      name: "groupe 1",
+      color: "m-blue",
+    },
+    {
+      id: 2,
+      name: "groupe 2",
+      color: "m-pink",
+    },
+  ];
+  expect(result).toEqual(expected_result);
+});
 
 it("should return an array of groups with their categories based on category's group id", () => {
   // Given
@@ -71,22 +144,4 @@ it("should return an array of groups with their categories based on category's g
     group_categories_two,
   ];
   expect(result).toEqual(expected_result);
-});
-
-it("should be alerted that a category is not in a group", () => {
-  // Given
-  console.log = jest.fn();
-  const category_not_in_group: ICategory = {
-    id: 3,
-    wording: "BBB",
-    description: "desc",
-  };
-
-  // When
-  orderCategoriesByGroups([category_not_in_group]);
-
-  // Then
-  expect(console.log).toHaveBeenCalledWith(
-    "La catégorie id=3 n'appartient à aucun groupe"
-  );
 });
