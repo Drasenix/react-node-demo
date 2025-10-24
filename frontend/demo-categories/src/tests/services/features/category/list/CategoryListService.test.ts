@@ -1,8 +1,6 @@
 import { ICategory } from "../../../../../services/api/interfaces/Categorie";
-import { IVisibleCategorie } from "../../../../../services/api/interfaces/VisibleCategorie";
 import { applyFilterOnCategories } from "../../../../../services/features/category/list/CategoryListService";
-import * as categoryService from "../../../../../services/api/CategoryService";
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it } from "@jest/globals";
 
 describe("tests applyFilterOnCategories", () => {
   it("should filter categories and remove those not containing value in wording or description", () => {

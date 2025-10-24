@@ -20,14 +20,27 @@ export function orderCategoriesByGroups(
     (categorie: ICategory): categorie is Required<ICategory> =>
       !!categorie.group
   );
-  return categoriesInGroup.reduce(
-    (groupedCategories: IGroupCategories[], categorie: Required<ICategory>) => {
-      const key = categorie.group.id;
-      if (!groupedCategories[key])
-        groupedCategories[key] = { group: categorie.group, categories: [] };
-      groupedCategories[key].categories.push(categorie);
-      return groupedCategories;
-    },
-    []
-  );
+  return categoriesInGroup
+    .reduce(
+      (
+        groupedCategories: IGroupCategories[],
+        categorie: Required<ICategory>
+      ) => {
+        const key = categorie.group.id;
+        if (!groupedCategories[key])
+          groupedCategories[key] = {
+            group: categorie.group,
+            categories: [],
+          };
+
+        groupedCategories[key].categories = [
+          ...groupedCategories[key].categories,
+          categorie,
+        ];
+
+        return groupedCategories;
+      },
+      []
+    )
+    .filter(() => true); // reseting indexes from 0 not to have wrong array length
 }
