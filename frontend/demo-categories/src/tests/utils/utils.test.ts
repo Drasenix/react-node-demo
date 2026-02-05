@@ -13,7 +13,7 @@ describe("remove accent and case sensitivity", () => {
 
   it("should remove case sensitivity", () => {
     // Given
-    const tested: string = "TeSTed";
+    const tested: string = "TeSTéd";
     // When
     const result: string = ignoreCaseAndAccent(tested);
     // Then
